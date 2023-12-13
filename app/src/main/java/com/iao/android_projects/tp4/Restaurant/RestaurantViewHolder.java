@@ -28,7 +28,7 @@ public class RestaurantViewHolder extends RecyclerView.ViewHolder implements Vie
         super(itemView);
         imageView = itemView.findViewById(R.id.imageview);
         title = itemView.findViewById(R.id.title);
-        description = itemView.findViewById(R.id.description);
+        description = itemView.findViewById(R.id.descriptionMeal);
         prix = itemView.findViewById(R.id.prix);
 
         // Set the click listener for the itemView

@@ -13,8 +13,11 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".tp5.ex3.travail_a_faire.Travail_a_faire"
+            android:name=".tp5.ex3.travail_a_faire.Meals"
             android:exported="false" />
+        <activity
+            android:name=".tp5.ex3.Ex3"
+            android:exported="true" />
         <activity
             android:name=".tp4.travail_a_faire.Horloge"
             android:exported="false" />
@@ -34,7 +37,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".tp5.ex3.Ex3"
+            android:name=".tp5.ex3.travail_a_faire.Travail_a_faire"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

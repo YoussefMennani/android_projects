@@ -20,6 +20,7 @@ import com.iao.android_projects.tp4.Restaurant.MenuRestaurantModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MenuRestaurant extends AppCompatActivity {
 
@@ -33,18 +34,31 @@ public class MenuRestaurant extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         List<MenuRestaurantModel> menuItems = new ArrayList<>();
+        List<MenuRestaurantModel> newMenu = new ArrayList<>();
 
-        menuItems.add(new MenuRestaurantModel(1L,R.drawable.a,100,"pizza","Demander au boucher de couper la viande en morceaux. en 4, ..."));
-        menuItems.add(new MenuRestaurantModel(1L,R.drawable.b,100,"pizza","Demander au boucher de couper la viande en morceaux. en 4, ..."));
-        menuItems.add(new MenuRestaurantModel(1L,R.drawable.c,100,"burger","Demander au boucher de couper la viande en morceaux. en 4, ..."));
+        menuItems.add(new MenuRestaurantModel(1L,R.drawable.a,100,"Pizza","Demander au boucher de couper la viande en morceaux. en 4, ..."));
+        menuItems.add(new MenuRestaurantModel(1L,R.drawable.b,100,"Pizza","Demander au boucher de couper la viande en morceaux. en 4, ..."));
+        menuItems.add(new MenuRestaurantModel(1L,R.drawable.c,100,"Sandwichs","Demander au boucher de couper la viande en morceaux. en 4, ..."));
         menuItems.add(new MenuRestaurantModel(1L,R.drawable.d,100,"couscous","Demander au boucher de couper la viande en morceaux. en 4, ..."));
-        menuItems.add(new MenuRestaurantModel(1L,R.drawable.e,100,"tajine","Demander au boucher de couper la viande en morceaux. en 4, ..."));
-        menuItems.add(new MenuRestaurantModel(1L,R.drawable.d,100,"couscous","Demander au boucher de couper la viande en morceaux. en 4, ..."));
-        menuItems.add(new MenuRestaurantModel(1L,R.drawable.a,100,"burger","Demander au boucher de couper la viande en morceaux. en 4, ..."));
-        menuItems.add(new MenuRestaurantModel(1L,R.drawable.c,100,"pizza","Demander au boucher de couper la viande en morceaux. en 4, ..."));
+        menuItems.add(new MenuRestaurantModel(1L,R.drawable.e,100,"Tajine","Demander au boucher de couper la viande en morceaux. en 4, ..."));
+        menuItems.add(new MenuRestaurantModel(1L,R.drawable.d,100,"Couscous","Demander au boucher de couper la viande en morceaux. en 4, ..."));
+        menuItems.add(new MenuRestaurantModel(1L,R.drawable.a,100,"Sandwichs","Demander au boucher de couper la viande en morceaux. en 4, ..."));
+        menuItems.add(new MenuRestaurantModel(1L,R.drawable.c,100,"Pizza","Demander au boucher de couper la viande en morceaux. en 4, ..."));
+
+        Intent intent  = getIntent();
+        if(intent != null){
+            String selectedItem = intent.getStringExtra("selectedItem");
+            Toast.makeText(this," ### "+selectedItem,Toast.LENGTH_LONG).show();
+
+            newMenu = menuItems.stream()
+                    .filter(item -> item.getTitle().equals(selectedItem))
+                    .collect(Collectors.toList());
+        }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new AdapterRestaurant(getApplicationContext(),menuItems));
+        recyclerView.setAdapter(new AdapterRestaurant(getApplicationContext(),newMenu));
+
+
 
     }
 
